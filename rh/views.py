@@ -5,4 +5,6 @@ def home(request):
     return render(request,'home.html')
 def produtos(request):
     return render(request,'produtos.html')
+def clientes(request):
+    return render(request,'clientes.html')
    
