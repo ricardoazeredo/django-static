@@ -4,4 +4,14 @@
 
 {% block content %}
     <h1> Posts</h1>
+    {{posts}}
+    {% for post in posts %}
+        <h4>{{post.titulo}}</h4>
+        <p>
+            {{post.conteudo}}
+        </p>
+        <span><strong>{{post.criado_em}}</strong></span>
+
+    {% endfor %}
+
 {% endblock %}

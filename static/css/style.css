@@ -7,10 +7,27 @@
 .header {
     background-color: blueviolet;
     color: white;
+    padding: 1rem;
 }
 
 .header a {
     text-decoration: none;
     color: #fff;
     font-weight: bold;
+    margin-right: 1rem;
+}
+main{
+    height: 84vh;
+}
+main, footer {
+    padding: 1rem;
+}
+
+footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: blueviolet;
+    color: #fff;
+    font-weight: bold;    
 }
