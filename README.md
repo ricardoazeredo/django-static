@@ -1,4 +1,4 @@
-# UC1 — Django Starter com Clean Code
+# UC3 — Django Static Blog/Empresa
 
 Projeto didático de Blog no DJANGO: Admin, ORM, Models, Partials.
 
