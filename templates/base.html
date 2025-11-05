@@ -14,12 +14,7 @@
 <body>
     <header class="header d-flex justify-content-between align-items-center">
         <h1>Logo</h1>
-        <nav class="menu">
-            <a href="{% url 'home' %}">Início</a>
-            <a href="{% url 'produtos' %}">Produtos</a>
-            <a href="{% url 'clientes' %}">Clientes</a>
-            <a href="{% url 'posts' %}">Posts</a>
-        </nav>
+        {% include "components/_navbar.html" %}
     </header>
     <main>
         {% block content%}
