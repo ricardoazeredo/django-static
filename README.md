@@ -34,3 +34,44 @@ python manage.py runserver
 
 
 
+## Deploy
+Pré-requisitos
+Um projeto Django funcional.
+Um repositório Git (preferencialmente GitHub, GitLab ou Bitbucket) com o código do seu projeto.
+Uma conta na Vercel, conectada ao seu provedor Git.
+Conhecimento básico da linha de comando (CLI) ou preferência por deploy via dashboard da Vercel. 
+
+### Passo a Passo
+1. Preparar o Projeto Django
+Instalar WhiteNoise: Para servir arquivos estáticos em produção, instale e configure o WhiteNoise.
+
+```bash
+    pip install whitenoise
+```
+
+No seu arquivo settings.py, adicione 'whitenoise.middleware.WhiteNoiseMiddleware' ao MIDDLEWARE, preferencialmente logo após o SecurityMiddleware.
+Configurar settings.py:
+
+Defina DEBUG = False (use variáveis de ambiente para gerenciar isso entre desenvolvimento e produção).
+Adicione o domínio da Vercel (.vercel.app) e seu domínio personalizado (se houver) ao ALLOWED_HOSTS. 
+Exemplo: ALLOWED_HOSTS = ['127.0.0.1', '.vercel.app', 'seusite.com'].
+
+Configure STATIC_ROOT para o local onde os arquivos estáticos serão coletados, por exemplo: 
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles_build').
+Gerar requirements.txt: Crie um arquivo requirements.txt com todas as dependências do seu projeto.
+
+```bash
+    pip freeze > requirements.txt
+```
+ 
+2. Adicionar Arquivos de Configuração da Vercel
+Crie os arquivos vercel.json e build_files.sh na raiz do seu projeto. O build_files.sh conterá comandos para instalar dependências, executar migrações e coletar arquivos estáticos durante o processo de build. O vercel.json configurará o processo de build e as rotas na Vercel. 
+Você pode encontrar o conteúdo completo sugerido para ambos os arquivos nas referências. Lembre-se de ajustar a versão do Python no build_files.sh e substituir {nome_do_projeto} no vercel.json e build_files.sh pelo nome do diretório principal do seu projeto. 
+3. Configurar o WSGI
+No arquivo wsgi.py do seu projeto, é necessário expor a aplicação WSGI com a variável app, além da variável application, para garantir a compatibilidade com o builder da Vercel. Você pode encontrar um exemplo completo do arquivo wsgi.py nas referências. 
+4. Fazer Deploy
+Envie suas alterações para o repositório Git.
+No painel da Vercel, importe seu projeto Django.
+Configure as variáveis de ambiente necessárias (como SECRET_KEY, DATABASE_URL, DEBUG=False) nas configurações do projeto na Vercel.
+Clique em "Deploy". A Vercel usará o vercel.json para o processo. 
+Após o deploy, a Vercel fornecerá o URL para acessar sua aplicação. 
