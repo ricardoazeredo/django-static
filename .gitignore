@@ -65,3 +65,4 @@ media/  # For user-uploaded files, if not managed by a separate storage solution
 # Operating System files
 .DS_Store
 Thumbs.db
+.env

@@ -1,14 +1,11 @@
 {
+  "version": 2,
   "builds": [
-    {
-      "src": "empresa/wsgi.py",
-      "use": "@vercel/python"
-    }
+    { "src": "empresa/wsgi.py", "use": "@vercel/python" },
+    { "src": "manage.py", "use": "@vercel/python", "config": { "zeroConfig": true } }
   ],
   "routes": [
-    {
-      "src": "/(.*)",
-      "dest": "empresa/wsgi.py"
-    }
+    { "src": "/static/(.*)", "dest": "/static/$1" },
+    { "src": "/(.*)", "dest": "/empresa/wsgi.py" }
   ]
 }
